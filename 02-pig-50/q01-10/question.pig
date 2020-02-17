@@ -9,3 +9,20 @@ fs -rm -f -r output;
 --
 -- >>> Escriba su respuesta a partir de este punto <<<
 --
+--
+fs -rm -f -r data.tsv
+fs -put data.tsv
+
+u = LOAD 'data.tsv' USING PigStorage('\t')
+    AS (col1:CHARARRAY,
+        col2:CHARARRAY,
+        col3:INT);
+DUMP u;
+
+p1 = GROUP u BY $0;
+Resp1 = FOREACH p1 GENERATE $0,COUNT(u);
+DUMP Resp1;
+
+STORE Resp1 INTO 'output';
+
+fs -copyToLocal output output
