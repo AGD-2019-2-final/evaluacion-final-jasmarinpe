@@ -12,3 +12,20 @@ fs -rm -f -r output;
 --
 -- >>> Escriba su respuesta a partir de este punto <<<
 --
+fs -rm -f -r data.tsv
+fs -put data.tsv
+
+data1 = LOAD 'data.tsv' USING PigStorage('\t')
+    AS (col1:CHARARRAY,
+        col2:BAG{t: TUPLE(p:CHARARRAY)},
+        col3:MAP[]);
+
+Resp7 = FOREACH data1 GENERATE $0,SIZE($1),SIZE($2);
+Resp71 = ORDER Resp7 BY $0,$1,$2;
+Resp = FOREACH Resp71 GENERATE CONCAT($0,',',(CHARARRAY)$1,',',(CHARARRAY)$2);
+DUMP Resp;
+
+
+STORE Resp INTO 'output';
+
+fs -copyToLocal output output
