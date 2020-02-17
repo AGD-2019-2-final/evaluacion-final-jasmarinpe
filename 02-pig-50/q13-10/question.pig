@@ -18,13 +18,26 @@
 -- 
 fs -rm -f -r output;
 --
-u = LOAD 'data.csv' USING PigStorage(',') 
+--
+-- >>> Escriba su respuesta a partir de este punto <<<
+--
+fs -rm -f -r data.csv
+fs -put data.csv
+
+data1 = LOAD 'data.csv' USING PigStorage(',') 
     AS (id:int, 
         firstname:CHARARRAY, 
         surname:CHARARRAY, 
         birthday:CHARARRAY, 
         color:CHARARRAY, 
         quantity:INT);
---
--- >>> Escriba su respuesta a partir de este punto <<<
---
+
+
+Resp13 = FILTER data1 BY ($4) matches '.*b.*';
+Resp = FOREACH Resp13 GENERATE $4;
+DUMP Resp;
+
+
+STORE Resp INTO 'output';
+
+fs -copyToLocal output output
