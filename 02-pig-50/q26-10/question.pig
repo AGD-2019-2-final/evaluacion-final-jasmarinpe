@@ -30,8 +30,8 @@ data1 = LOAD 'data.csv' USING PigStorage(',')
         quantity:INT);
 
 
-Resp26 = FILTER data1 BY LOWER(SUBSTRING($1, 0, 1)) >= 'm';
-Resp = FOREACH Resp26 GENERATE $1;
+Resp1 = FILTER data1 BY LOWER(SUBSTRING($1, 0, 1)) >= 'm';
+Resp = FOREACH Resp1 GENERATE $1;
 DUMP Resp;
 
 
