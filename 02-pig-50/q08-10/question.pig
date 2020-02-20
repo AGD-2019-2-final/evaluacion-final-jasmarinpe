@@ -21,10 +21,10 @@ data1 = LOAD 'data.tsv' USING PigStorage('\t')
         col3:MAP[]);
 
 
-Resp8 = FOREACH data1 GENERATE FLATTEN($1), FLATTEN(KEYSET($2));
-Resp81 = GROUP Resp8 BY ($0,$1);
-Resp = FOREACH Resp81 GENERATE group,COUNT(Resp8);
-DUMP Resp
+Resp = FOREACH data1 GENERATE FLATTEN($1), FLATTEN(KEYSET($2));
+Resp1 = GROUP Resp BY ($0,$1);
+Resp2 = FOREACH Resp1 GENERATE group,COUNT(Resp);
+DUMP Resp2
 
 
-STORE Resp INTO 'output';
+STORE Resp2 INTO 'output';
