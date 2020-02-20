@@ -30,8 +30,8 @@ u = LOAD 'data.csv' USING PigStorage(',')
         quantity:INT);
 
 
-Resp15 = FILTER u BY $4 == 'blue' AND $1 MATCHES '.*Z.*';
-Resp = FOREACH Resp15 GENERATE CONCAT($1,'\t',$4);
+Resp1 = FILTER u BY $4 == 'blue' AND $1 MATCHES '.*Z.*';
+Resp = FOREACH Resp1 GENERATE CONCAT($1,'\t',$4);
 DUMP Resp;
 
 
