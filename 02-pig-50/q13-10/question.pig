@@ -31,8 +31,8 @@ data1 = LOAD 'data.csv' USING PigStorage(',')
         quantity:INT);
 
 
-Resp13 = FILTER data1 BY ($4) matches '.*b.*';
-Resp = FOREACH Resp13 GENERATE $4;
+Resp1 = FILTER data1 BY ($4) matches '.*b.*';
+Resp = FOREACH Resp1 GENERATE $4;
 DUMP Resp;
 
 
