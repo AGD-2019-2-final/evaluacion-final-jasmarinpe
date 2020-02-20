@@ -8,12 +8,16 @@ fs -rm -f -r output;
 --
 -- >>> Escriba su respuesta a partir de este punto <<<
 --
-fs -rm -f -r data.tsv
-fs -put data.tsv
-datos = LOAD 'data.tsv' using PigStorage('\t') AS (id:chararray,date:chararray,numero:int);
-y = ORDER datos BY numero ASC;
-x = FOREACH y generate numero;
-z = LIMIT x 5;
+u = LOAD 'data.tsv' USING PigStorage('\t')
+    AS (col1:CHARARRAY,
+        col2:CHARARRAY,
+        col3:INT);
+DUMP u;
 
-STORE z INTO './output' using PigStorage('\t');
-fs -copyToLocal output output
+p3 = ORDER u BY $2;
+Resp3 = LIMIT p3 5;
+Resp = FOREACH Resp3 GENERATE $2;
+DUMP Resp;
+
+
+STORE Resp INTO 'output';
