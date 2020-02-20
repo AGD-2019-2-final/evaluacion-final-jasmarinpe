@@ -14,8 +14,6 @@ fs -rm -f -r output;
 --
 -- >>> Escriba su respuesta a partir de este punto <<<
 --
-fs -rm -f -r data.tsv
-fs -put data.tsv
 
 data1 = LOAD 'data.tsv' USING PigStorage('\t')
     AS (col1:CHARARRAY,
@@ -30,5 +28,3 @@ DUMP Resp
 
 
 STORE Resp INTO 'output';
-
-fs -copyToLocal output output
