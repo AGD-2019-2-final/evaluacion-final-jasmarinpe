@@ -32,8 +32,8 @@ data1 = LOAD 'data.csv' USING PigStorage(',')
         quantity:INT);
 
 
-Resp28 = FOREACH data1 GENERATE $3,ToDate($3,'yyyy-MM-dd');
-Resp = FOREACH Resp28 GENERATE ToString($1,'yyyy'),ToString($1,'yy');
+Resp1 = FOREACH data1 GENERATE $3,ToDate($3,'yyyy-MM-dd');
+Resp = FOREACH Resp1 GENERATE ToString($1,'yyyy'),ToString($1,'yy');
 DUMP Resp;
 
 
