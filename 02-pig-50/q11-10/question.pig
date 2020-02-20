@@ -41,9 +41,9 @@ u = LOAD 'data.csv' USING PigStorage(',')
         quantity:INT);
 
 
-Resp11 = FOREACH u GENERATE $2,UPPER($2),LOWER($2);
-Resp111 = ORDER Resp11 BY $0;
-Resp = FOREACH Resp111 GENERATE CONCAT($0,',',$1,',',$2);
+Resp1 = FOREACH u GENERATE $2,UPPER($2),LOWER($2);
+Resp2 = ORDER Resp1 BY $0;
+Resp = FOREACH Resp2 GENERATE CONCAT($0,',',$1,',',$2);
 DUMP Resp;
 
 
