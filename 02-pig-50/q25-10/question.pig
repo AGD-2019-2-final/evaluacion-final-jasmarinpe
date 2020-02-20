@@ -19,8 +19,7 @@ fs -rm -f -r output;
 --
 -- >>> Escriba su respuesta a partir de este punto <<<
 --
-fs -rm -f -r data.csv
-fs -put data.csv
+
 
 data1 = LOAD 'data.csv' USING PigStorage(',') 
     AS (id:int, 
@@ -36,5 +35,3 @@ DUMP Resp;
 
 
 STORE Resp INTO 'output' USING PigStorage(',');
-
-fs -copyToLocal output output
