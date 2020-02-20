@@ -30,8 +30,8 @@ data1 = LOAD 'data.csv' USING PigStorage(',')
         quantity:INT);
 
 
-Resp18 = FILTER data1 BY NOT $4 IN ('blue','black');
-Resp = FOREACH Resp18 GENERATE $1,$4;
+Resp1 = FILTER data1 BY NOT $4 IN ('blue','black');
+Resp = FOREACH Resp1 GENERATE $1,$4;
 DUMP Resp;
 
 
