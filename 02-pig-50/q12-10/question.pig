@@ -36,8 +36,8 @@ u = LOAD 'data.csv' USING PigStorage(',')
         quantity:INT);
 
 
-Resp12 = FILTER u BY LOWER(SUBSTRING($2,0,1)) IN ('d','e','f','g','h','i','j','k');
-Resp = FOREACH Resp12 GENERATE $2;--CONCAT($0,',',$1,',',$2);
+Resp1 = FILTER u BY LOWER(SUBSTRING($2,0,1)) IN ('d','e','f','g','h','i','j','k');
+Resp = FOREACH Resp1 GENERATE $2;--CONCAT($0,',',$1,',',$2);
 DUMP Resp;
 
 
