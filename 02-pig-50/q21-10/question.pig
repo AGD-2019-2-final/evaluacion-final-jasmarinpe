@@ -31,8 +31,8 @@ data1 = LOAD 'data.csv' USING PigStorage(',')
         quantity:INT);
 
 
-Resp21 = FILTER data1 BY $4 MATCHES 'blue|green';
-Resp = FOREACH Resp21 GENERATE $1,$4;
+Resp1 = FILTER data1 BY $4 MATCHES 'blue|green';
+Resp = FOREACH Resp1 GENERATE $1,$4;
 DUMP Resp;
 
 
