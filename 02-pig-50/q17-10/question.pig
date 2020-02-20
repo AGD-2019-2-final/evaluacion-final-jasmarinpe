@@ -29,8 +29,8 @@ u = LOAD 'data.csv' USING PigStorage(',')
         quantity:INT);
 
 
-Resp17 = FILTER u BY $4 IN ('blue','black');
-Resp = FOREACH Resp17 GENERATE $1,$4;
+Resp1 = FILTER u BY $4 IN ('blue','black');
+Resp = FOREACH Resp1 GENERATE $1,$4;
 DUMP Resp;
 
 
