@@ -22,10 +22,9 @@ data1 = LOAD 'data.csv' USING PigStorage(',')
         color:CHARARRAY, 
         quantity:INT);
 
-
-Resp31 = FOREACH data1 GENERATE $1,SUBSTRING($3,0,4);
-Resp311 = GROUP Resp31 BY $1;
-Resp = FOREACH Resp311 GENERATE $0,COUNT($1);
+Resp1 = FOREACH data1 GENERATE $1,SUBSTRING($3,0,4);
+Resp2 = GROUP Resp1 BY $1;
+Resp = FOREACH Resp2 GENERATE $0,COUNT($1);
 DUMP Resp;
 
 
