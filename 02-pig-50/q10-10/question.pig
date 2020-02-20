@@ -29,11 +29,11 @@ data1 = LOAD 'data.csv' USING PigStorage(',')
         quantity:INT);
 
 
-Resp10 = FOREACH data1 GENERATE $2,SIZE($2);
-Resp101 = ORDER Resp10 BY $1 DESC, $0;
-Resp102 = LIMIT Resp101 5;
-Resp = FOREACH Resp102 GENERATE CONCAT($0,',',(CHARARRAY)$1);
-DUMP Resp;
+Resp = FOREACH data1 GENERATE $2,SIZE($2);
+Resp1 = ORDER Resp BY $1 DESC, $0;
+Resp2 = LIMIT Resp1 5;
+Resp3 = FOREACH Resp2 GENERATE CONCAT($0,',',(CHARARRAY)$1);
+DUMP Resp3;
 
 
-STORE Resp INTO 'output';
+STORE Resp3 INTO 'output';
