@@ -30,8 +30,8 @@ data1 = LOAD 'data.csv' USING PigStorage(',')
         quantity:INT);
 
 
-Resp15 = FILTER data1 BY $4 == 'blue' OR $1 MATCHES '.*K.*';
-Resp = FOREACH Resp15 GENERATE $1,$4;
+Resp1 = FILTER data1 BY $4 == 'blue' OR $1 MATCHES '.*K.*';
+Resp = FOREACH Resp1 GENERATE $1,$4;
 DUMP Resp;
 
 
